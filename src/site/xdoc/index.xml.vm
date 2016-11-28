@@ -12,12 +12,14 @@
     <subsection name="${project.name}">
       <p>
         The <b>${project.name}</b> package implements a set of types and
-        functions for specifying and determining coordinate system handedness.
+        functions for converting coordinate values between coordinate systems.
       </p>
     </subsection>
     <subsection name="Features">
       <ul>
+        <li>Functions for converting between Cartesian coordinate systems.</li>
         <li>ISC license.</li>
+        <li>High-coverage automated test suite.</li>
       </ul>
     </subsection>
   </body>

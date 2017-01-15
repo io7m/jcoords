@@ -29,46 +29,49 @@ public enum CAxis
    * The positive X axis.
    */
 
-  AXIS_POSITIVE_X('x', new VectorI3D(1.0, 0.0, 0.0)),
+  AXIS_POSITIVE_X('x', true, new VectorI3D(1.0, 0.0, 0.0)),
 
   /**
    * The positive Y axis.
    */
 
-  AXIS_POSITIVE_Y('y', new VectorI3D(0.0, 1.0, 0.0)),
+  AXIS_POSITIVE_Y('y', true, new VectorI3D(0.0, 1.0, 0.0)),
 
   /**
    * The positive Z axis.
    */
 
-  AXIS_POSITIVE_Z('z', new VectorI3D(0.0, 0.0, 1.0)),
+  AXIS_POSITIVE_Z('z', true, new VectorI3D(0.0, 0.0, 1.0)),
 
   /**
    * The negative X axis.
    */
 
-  AXIS_NEGATIVE_X('x', new VectorI3D(-1.0, 0.0, 0.0)),
+  AXIS_NEGATIVE_X('x', false, new VectorI3D(-1.0, 0.0, 0.0)),
 
   /**
    * The negative Y axis.
    */
 
-  AXIS_NEGATIVE_Y('y', new VectorI3D(0.0, -1.0, 0.0)),
+  AXIS_NEGATIVE_Y('y', false, new VectorI3D(0.0, -1.0, 0.0)),
 
   /**
    * The negative Z axis.
    */
 
-  AXIS_NEGATIVE_Z('z', new VectorI3D(0.0, 0.0, -1.0));
+  AXIS_NEGATIVE_Z('z', false, new VectorI3D(0.0, 0.0, -1.0));
 
   private final int name;
   private final VectorI3D vector;
+  private final boolean positive;
 
   CAxis(
     final int in_name,
+    final boolean in_positive,
     final VectorI3D in_v)
   {
     this.name = in_name;
+    this.positive = in_positive;
     this.vector = NullCheck.notNull(in_v, "Vector");
   }
 
@@ -79,6 +82,15 @@ public enum CAxis
   public int axis()
   {
     return this.name;
+  }
+
+  /**
+   * @return The axis as "+x", "-x", "+y", "-y", "+z", or "-z"
+   */
+
+  public String axisSigned()
+  {
+    return this.positive ? "+" + (char) this.axis() : "-" + (char) this.axis();
   }
 
   /**

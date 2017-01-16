@@ -18,10 +18,14 @@ package com.io7m.jcoords.tests.core.conversion;
 
 import com.io7m.jcoords.core.conversion.CAxis;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public final class CAxisTest
 {
+  @Rule public ExpectedException expected = ExpectedException.none();
+
   @Test
   public void testAxisSign()
   {
@@ -31,5 +35,23 @@ public final class CAxisTest
     Assert.assertEquals("-x", CAxis.AXIS_NEGATIVE_X.axisSigned());
     Assert.assertEquals("-y", CAxis.AXIS_NEGATIVE_Y.axisSigned());
     Assert.assertEquals("-z", CAxis.AXIS_NEGATIVE_Z.axisSigned());
+  }
+
+  @Test
+  public void testAxisParse()
+  {
+    Assert.assertEquals(CAxis.of("+x"), CAxis.AXIS_POSITIVE_X);
+    Assert.assertEquals(CAxis.of("+y"), CAxis.AXIS_POSITIVE_Y);
+    Assert.assertEquals(CAxis.of("+z"), CAxis.AXIS_POSITIVE_Z);
+    Assert.assertEquals(CAxis.of("-x"), CAxis.AXIS_NEGATIVE_X);
+    Assert.assertEquals(CAxis.of("-y"), CAxis.AXIS_NEGATIVE_Y);
+    Assert.assertEquals(CAxis.of("-z"), CAxis.AXIS_NEGATIVE_Z);
+  }
+
+  @Test
+  public void testAxisParseBad()
+  {
+    this.expected.expect(IllegalArgumentException.class);
+    CAxis.of("q");
   }
 }

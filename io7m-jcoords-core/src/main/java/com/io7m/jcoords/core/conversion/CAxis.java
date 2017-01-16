@@ -76,6 +76,39 @@ public enum CAxis
   }
 
   /**
+   * Parse an axis.
+   *
+   * @param name The axis as "+x", "-x", "+y", "-y", "+z", or "-z"
+   *
+   * @return A parsed axis
+   *
+   * @throws IllegalArgumentException If the axis cannot be parsed
+   */
+
+  public static CAxis of(
+    final String name)
+    throws IllegalArgumentException
+  {
+    switch (name) {
+      case "+x":
+        return AXIS_POSITIVE_X;
+      case "+y":
+        return AXIS_POSITIVE_Y;
+      case "+z":
+        return AXIS_POSITIVE_Z;
+      case "-x":
+        return AXIS_NEGATIVE_X;
+      case "-y":
+        return AXIS_NEGATIVE_Y;
+      case "-z":
+        return AXIS_NEGATIVE_Z;
+      default: {
+        throw new IllegalArgumentException("Unrecognized axis name: " + name);
+      }
+    }
+  }
+
+  /**
    * @return The axis as 'x', 'y' or 'z'
    */
 

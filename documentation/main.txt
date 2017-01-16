@@ -1,4 +1,4 @@
-io7m-jcoords 0.1.1 Documentation
+io7m-jcoords 0.1.2 Documentation
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Contents

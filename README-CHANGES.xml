@@ -3,6 +3,16 @@
   <c:project>io7m-jcoords</c:project>
 
   <c:release c:ticket-system="com.github.io7m.jcoords">
+    <c:date>2017-01-16</c:date>
+    <c:version>0.1.2</c:version>
+    <c:item>
+      <c:date>2017-01-16</c:date>
+      <c:type-code-new/>
+      <c:summary>Add CAxis#of()</c:summary>
+    </c:item>
+  </c:release>
+
+  <c:release c:ticket-system="com.github.io7m.jcoords">
     <c:date>2017-01-15</c:date>
     <c:version>0.1.1</c:version>
     <c:item>

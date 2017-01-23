@@ -76,7 +76,8 @@
         <configuration>
           <instructions>
             <Export-Package>
-              com.io7m.jcoords.core
+              com.io7m.jcoords.core,
+              com.io7m.jcoords.core.conversion
             </Export-Package>
           </instructions>
         </configuration>

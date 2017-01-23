@@ -8,6 +8,7 @@
     <c:item>
       <c:date>2017-01-23</c:date>
       <c:type-code-fix/>
+      <c:ticket>1</c:ticket>
       <c:summary>Fix OSGi manifest; export com.io7m.jcoords.core.conversion.</c:summary>
     </c:item>
   </c:release>

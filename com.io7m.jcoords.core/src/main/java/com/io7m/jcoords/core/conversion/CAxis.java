@@ -59,7 +59,7 @@ public enum CAxis
    * The negative Z axis.
    */
 
-  AXIS_NEGATIVE_Z('z', false, Vector3D.of(0.0, 0.0, -1.0)),;
+  AXIS_NEGATIVE_Z('z', false, Vector3D.of(0.0, 0.0, -1.0));
 
   private final int name;
   private final Vector3D vector;

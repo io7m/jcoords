@@ -3,6 +3,21 @@
   <c:project>com.io7m.jcoords</c:project>
 
   <c:release c:ticket-system="com.github.io7m.jcoords">
+    <c:date>2017-04-09</c:date>
+    <c:version>0.2.0</c:version>
+    <c:item>
+      <c:date>2017-04-09</c:date>
+      <c:type-code-fix/>
+      <c:summary>Rename project. Use the new primogenitor POM and 2017 project conventions.</c:summary>
+    </c:item>
+    <c:item>
+      <c:date>2017-04-09</c:date>
+      <c:type-code-change/>
+      <c:summary>Minor rewrite to use jtensors 8.0.0 immutable tensors.</c:summary>
+    </c:item>
+  </c:release>
+
+  <c:release c:ticket-system="com.github.io7m.jcoords">
     <c:date>2017-01-23</c:date>
     <c:version>0.1.3</c:version>
     <c:item>

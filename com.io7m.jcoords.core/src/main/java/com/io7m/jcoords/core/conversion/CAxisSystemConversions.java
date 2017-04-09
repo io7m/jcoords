@@ -16,13 +16,14 @@
 
 package com.io7m.jcoords.core.conversion;
 
-import com.io7m.jtensors.Matrix3x3DType;
-import com.io7m.jtensors.Matrix4x4DType;
-import com.io7m.jtensors.MatrixHeapArrayM3x3D;
-import com.io7m.jtensors.MatrixHeapArrayM4x4D;
-import com.io7m.jtensors.MatrixM3x3D;
-import com.io7m.jtensors.MatrixM4x4D;
+import com.io7m.jaffirm.core.Invariants;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrices3x3D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrices4x4D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrix3x3D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrix4x4D;
 import com.io7m.junreachable.UnreachableCodeException;
+
+import java.util.Optional;
 
 /**
  * Functions to produce matrices to convert between coordinate spaces.
@@ -39,64 +40,47 @@ public final class CAxisSystemConversions
    * Construct a 3x3 matrix to convert coordinates in system {@code source}
    * to system {@code target}.
    *
-   * @param context A matrix context
-   * @param source  The source coordinate system
-   * @param target  The target coordinate system
+   * @param source The source coordinate system
+   * @param target The target coordinate system
    *
    * @return A new matrix
    */
 
-  public static Matrix3x3DType createMatrix3x3D(
-    final MatrixM3x3D.ContextMM3D context,
+  public static Matrix3x3D createMatrix3x3D(
     final CAxisSystemType source,
     final CAxisSystemType target)
   {
-    final Matrix3x3DType m_source_inv = source.basis();
-    MatrixM3x3D.invertInPlace(context, m_source_inv);
-    final Matrix3x3DType m_target = target.basis();
-    final Matrix3x3DType full = MatrixHeapArrayM3x3D.newMatrix();
-    MatrixM3x3D.multiply(m_target, m_source_inv, full);
-    return full;
+    final Optional<Matrix3x3D> m_source_inv_opt =
+      Matrices3x3D.invert(source.basis3x3());
+
+    Invariants.checkInvariant(
+      m_source_inv_opt.isPresent(),
+      "Coordinate system matrix must be invertible");
+
+    return Matrices3x3D.multiply(target.basis3x3(), m_source_inv_opt.get());
   }
 
   /**
    * Construct a 4x4 matrix to convert coordinates in system {@code source}
    * to system {@code target}.
    *
-   * @param context A matrix context
-   * @param source  The source coordinate system
-   * @param target  The target coordinate system
+   * @param source The source coordinate system
+   * @param target The target coordinate system
    *
    * @return A new matrix
    */
 
-  public static Matrix4x4DType createMatrix4x4D(
-    final MatrixM4x4D.ContextMM4D context,
+  public static Matrix4x4D createMatrix4x4D(
     final CAxisSystemType source,
     final CAxisSystemType target)
   {
-    final Matrix3x3DType m_source = source.basis();
-    final Matrix4x4DType m_source_inv = MatrixHeapArrayM4x4D.newMatrix();
-    for (int column = 0; column < 3; ++column) {
-      for (int row = 0; row < 3; ++row) {
-        m_source_inv.setRowColumnD(
-          row, column, m_source.getRowColumnD(row, column));
-      }
-    }
+    final Optional<Matrix4x4D> m_source_inv_opt =
+      Matrices4x4D.invert(source.basis4x4());
 
-    MatrixM4x4D.invertInPlace(context, m_source_inv);
+    Invariants.checkInvariant(
+      m_source_inv_opt.isPresent(),
+      "Coordinate system matrix must be invertible");
 
-    final Matrix3x3DType m_target = target.basis();
-    final Matrix4x4DType m_target_4x4 = MatrixHeapArrayM4x4D.newMatrix();
-    for (int column = 0; column < 3; ++column) {
-      for (int row = 0; row < 3; ++row) {
-        m_target_4x4.setRowColumnD(
-          row, column, m_target.getRowColumnD(row, column));
-      }
-    }
-
-    final Matrix4x4DType full = MatrixHeapArrayM4x4D.newMatrix();
-    MatrixM4x4D.multiply(m_target_4x4, m_source_inv, full);
-    return full;
+    return Matrices4x4D.multiply(target.basis4x4(), m_source_inv_opt.get());
   }
 }

@@ -17,7 +17,7 @@
 package com.io7m.jcoords.core.conversion;
 
 import com.io7m.jnull.NullCheck;
-import com.io7m.jtensors.VectorI3D;
+import com.io7m.jtensors.core.unparameterized.vectors.Vector3D;
 
 /**
  * An axis.
@@ -29,46 +29,46 @@ public enum CAxis
    * The positive X axis.
    */
 
-  AXIS_POSITIVE_X('x', true, new VectorI3D(1.0, 0.0, 0.0)),
+  AXIS_POSITIVE_X('x', true, Vector3D.of(1.0, 0.0, 0.0)),
 
   /**
    * The positive Y axis.
    */
 
-  AXIS_POSITIVE_Y('y', true, new VectorI3D(0.0, 1.0, 0.0)),
+  AXIS_POSITIVE_Y('y', true, Vector3D.of(0.0, 1.0, 0.0)),
 
   /**
    * The positive Z axis.
    */
 
-  AXIS_POSITIVE_Z('z', true, new VectorI3D(0.0, 0.0, 1.0)),
+  AXIS_POSITIVE_Z('z', true, Vector3D.of(0.0, 0.0, 1.0)),
 
   /**
    * The negative X axis.
    */
 
-  AXIS_NEGATIVE_X('x', false, new VectorI3D(-1.0, 0.0, 0.0)),
+  AXIS_NEGATIVE_X('x', false, Vector3D.of(-1.0, 0.0, 0.0)),
 
   /**
    * The negative Y axis.
    */
 
-  AXIS_NEGATIVE_Y('y', false, new VectorI3D(0.0, -1.0, 0.0)),
+  AXIS_NEGATIVE_Y('y', false, Vector3D.of(0.0, -1.0, 0.0)),
 
   /**
    * The negative Z axis.
    */
 
-  AXIS_NEGATIVE_Z('z', false, new VectorI3D(0.0, 0.0, -1.0));
+  AXIS_NEGATIVE_Z('z', false, Vector3D.of(0.0, 0.0, -1.0)),;
 
   private final int name;
-  private final VectorI3D vector;
+  private final Vector3D vector;
   private final boolean positive;
 
   CAxis(
     final int in_name,
     final boolean in_positive,
-    final VectorI3D in_v)
+    final Vector3D in_v)
   {
     this.name = in_name;
     this.positive = in_positive;
@@ -130,7 +130,7 @@ public enum CAxis
    * @return The vector for the axis
    */
 
-  public VectorI3D vector()
+  public Vector3D vector()
   {
     return this.vector;
   }

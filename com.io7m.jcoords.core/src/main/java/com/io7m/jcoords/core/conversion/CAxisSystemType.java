@@ -18,10 +18,15 @@ package com.io7m.jcoords.core.conversion;
 
 import com.io7m.jaffirm.core.Preconditions;
 import com.io7m.jcoords.core.ImmutableStyleType;
-import com.io7m.jtensors.Matrix3x3DType;
-import com.io7m.jtensors.MatrixHeapArrayM3x3D;
-import com.io7m.jtensors.VectorI3D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrices3x3D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrices4x4D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrix3x3D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrix4x4D;
+import com.io7m.jtensors.core.unparameterized.vectors.Vector3D;
+import com.io7m.jtensors.core.unparameterized.vectors.Vector4D;
 import org.immutables.value.Value;
+
+import java.util.function.Function;
 
 /**
  * An arrangement of orthonormal axes forming a Cartesian coordinate system.
@@ -74,13 +79,13 @@ public interface CAxisSystemType
    * @return The basis matrix for the axis system
    */
 
-  default Matrix3x3DType basis()
+  default Matrix3x3D basis3x3()
   {
     final CAxis r = this.right();
     final CAxis u = this.up();
     final CAxis f = this.forward();
 
-    final VectorI3D column_x;
+    final Vector3D column_x;
     if (r.axis() == 'x') {
       column_x = r.vector();
     } else if (u.axis() == 'x') {
@@ -89,7 +94,7 @@ public interface CAxisSystemType
       column_x = f.vector();
     }
 
-    final VectorI3D column_y;
+    final Vector3D column_y;
     if (r.axis() == 'y') {
       column_y = r.vector();
     } else if (u.axis() == 'y') {
@@ -98,7 +103,7 @@ public interface CAxisSystemType
       column_y = f.vector();
     }
 
-    final VectorI3D column_z;
+    final Vector3D column_z;
     if (r.axis() == 'z') {
       column_z = r.vector();
     } else if (u.axis() == 'z') {
@@ -107,18 +112,53 @@ public interface CAxisSystemType
       column_z = f.vector();
     }
 
-    final Matrix3x3DType m = MatrixHeapArrayM3x3D.newMatrix();
-    m.setR0C0D(column_x.getXD());
-    m.setR1C0D(column_x.getYD());
-    m.setR2C0D(column_x.getZD());
+    return Matrices3x3D.ofColumns(column_x, column_y, column_z);
+  }
 
-    m.setR0C1D(column_y.getXD());
-    m.setR1C1D(column_y.getYD());
-    m.setR2C1D(column_y.getZD());
+  /**
+   * @return The basis matrix for the axis system
+   */
 
-    m.setR0C2D(column_z.getXD());
-    m.setR1C2D(column_z.getYD());
-    m.setR2C2D(column_z.getZD());
-    return m;
+  default Matrix4x4D basis4x4()
+  {
+    final CAxis r = this.right();
+    final CAxis u = this.up();
+    final CAxis f = this.forward();
+
+    final Vector3D column_x;
+    if (r.axis() == 'x') {
+      column_x = r.vector();
+    } else if (u.axis() == 'x') {
+      column_x = u.vector();
+    } else {
+      column_x = f.vector();
+    }
+
+    final Vector3D column_y;
+    if (r.axis() == 'y') {
+      column_y = r.vector();
+    } else if (u.axis() == 'y') {
+      column_y = u.vector();
+    } else {
+      column_y = f.vector();
+    }
+
+    final Vector3D column_z;
+    if (r.axis() == 'z') {
+      column_z = r.vector();
+    } else if (u.axis() == 'z') {
+      column_z = u.vector();
+    } else {
+      column_z = f.vector();
+    }
+
+    final Function<Vector3D, Vector4D> extend0 =
+      (Vector3D v) -> Vector4D.of(v.x(), v.y(), v.z(), 0.0);
+
+    return Matrices4x4D.ofColumns(
+      extend0.apply(column_x),
+      extend0.apply(column_y),
+      extend0.apply(column_z),
+      Vector4D.of(0.0, 0.0, 0.0, 1.0));
   }
 }

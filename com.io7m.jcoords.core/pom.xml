@@ -29,6 +29,10 @@
       <artifactId>com.io7m.jnull.core</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.io7m.jequality</groupId>
+      <artifactId>com.io7m.jequality.core</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.io7m.junreachable</groupId>
       <artifactId>com.io7m.junreachable.core</artifactId>
     </dependency>

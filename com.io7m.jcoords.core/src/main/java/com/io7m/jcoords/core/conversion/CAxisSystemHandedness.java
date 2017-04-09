@@ -18,7 +18,8 @@ package com.io7m.jcoords.core.conversion;
 
 import com.io7m.jequality.AlmostEqualDouble;
 import com.io7m.jnull.NullCheck;
-import com.io7m.jtensors.VectorM3D;
+import com.io7m.jtensors.core.unparameterized.vectors.Vector3D;
+import com.io7m.jtensors.core.unparameterized.vectors.Vectors3D;
 
 /**
  * The handedness of a coordinate system.
@@ -55,18 +56,20 @@ public enum CAxisSystemHandedness
      * Calculate the remaining "right" vector.
      */
 
-    final VectorM3D right = new VectorM3D();
-    VectorM3D.crossProduct(
-      system.forward().vector(),
-      system.up().vector(),
-      right);
+    final Vector3D right = Vectors3D.crossProduct(
+      system.forward().vector(), system.up().vector());
 
     final AlmostEqualDouble.ContextRelative c =
       new AlmostEqualDouble.ContextRelative();
     c.setMaxAbsoluteDifference(0.00000001);
     c.setMaxRelativeDifference(0.00000001);
 
-    if (VectorM3D.almostEqual(c, system.right().vector(), right)) {
+
+    final Vector3D system_right = system.right().vector();
+
+    if (AlmostEqualDouble.almostEqual(c, right.x(), system_right.x())
+      && AlmostEqualDouble.almostEqual(c, right.y(), system_right.y())
+      && AlmostEqualDouble.almostEqual(c, right.z(), system_right.z())) {
       return RIGHT_HANDED;
     }
 

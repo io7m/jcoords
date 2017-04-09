@@ -19,19 +19,19 @@ package com.io7m.jcoords.tests.core.conversion;
 import com.io7m.jcoords.core.conversion.CAxis;
 import com.io7m.jcoords.core.conversion.CAxisSystem;
 import com.io7m.jcoords.core.conversion.CAxisSystemConversions;
-import com.io7m.jequality.AlmostEqualDouble;
-import com.io7m.jtensors.Matrix3x3DType;
-import com.io7m.jtensors.Matrix4x4DType;
-import com.io7m.jtensors.MatrixM3x3D;
-import com.io7m.jtensors.MatrixM4x4D;
-import com.io7m.jtensors.VectorI3D;
-import com.io7m.jtensors.VectorI4D;
-import com.io7m.jtensors.VectorM3D;
-import com.io7m.jtensors.VectorM4D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrices3x3D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrices4x4D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrix3x3D;
+import com.io7m.jtensors.core.unparameterized.matrices.Matrix4x4D;
+import com.io7m.jtensors.core.unparameterized.vectors.Vector3D;
+import com.io7m.jtensors.core.unparameterized.vectors.Vector4D;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static com.io7m.jequality.AlmostEqualDouble.ContextRelative;
+import static com.io7m.jequality.AlmostEqualDouble.almostEqual;
 
 public final class CAxisSystemConversionsTest
 {
@@ -44,11 +44,8 @@ public final class CAxisSystemConversionsTest
   @Test
   public void testAxesIdentity3x3()
   {
-    final MatrixM3x3D.ContextMM3D c =
-      new MatrixM3x3D.ContextMM3D();
-
-    final AlmostEqualDouble.ContextRelative cr =
-      new AlmostEqualDouble.ContextRelative();
+    final ContextRelative cr =
+      new ContextRelative();
     cr.setMaxRelativeDifference(0.0000001);
     cr.setMaxAbsoluteDifference(0.0000001);
 
@@ -90,23 +87,28 @@ public final class CAxisSystemConversionsTest
                 target_b.setForward(target_forward);
                 final CAxisSystem target = target_b.build();
 
-                final Matrix3x3DType m_a =
-                  CAxisSystemConversions.createMatrix3x3D(c, source, target);
-                final Matrix3x3DType m_b =
-                  CAxisSystemConversions.createMatrix3x3D(c, target, source);
+                final Matrix3x3D m_a =
+                  CAxisSystemConversions.createMatrix3x3D(source, target);
+                final Matrix3x3D m_b =
+                  CAxisSystemConversions.createMatrix3x3D(target, source);
 
-                final VectorI3D v_src =
-                  new VectorI3D(Math.random(), Math.random(), Math.random());
+                final Vector3D v_src = Vector3D.of(
+                  Math.random(), Math.random(), Math.random());
 
-                final VectorM3D v_dst = new VectorM3D();
+                final Vector3D v_dst_pre =
+                  Matrices3x3D.multiplyVectorPost(m_a, v_src);
 
-                MatrixM3x3D.multiplyVector3D(c, m_a, v_src, v_dst);
                 LOG.debug("v_src:        {}", v_src);
-                LOG.debug("v_dst (pre):  {}", v_dst);
-                MatrixM3x3D.multiplyVector3D(c, m_b, v_dst, v_dst);
-                LOG.debug("v_dst (post): {}", v_dst);
+                LOG.debug("v_dst (pre):  {}", v_dst_pre);
 
-                Assert.assertTrue(VectorM3D.almostEqual(cr, v_src, v_dst));
+                final Vector3D v_dst_post =
+                  Matrices3x3D.multiplyVectorPost(m_b, v_dst_pre);
+
+                LOG.debug("v_dst (post): {}", v_dst_post);
+
+                Assert.assertTrue(almostEqual(cr, v_src.x(), v_dst_post.x()));
+                Assert.assertTrue(almostEqual(cr, v_src.y(), v_dst_post.y()));
+                Assert.assertTrue(almostEqual(cr, v_src.z(), v_dst_post.z()));
               }
             }
           }
@@ -118,11 +120,8 @@ public final class CAxisSystemConversionsTest
   @Test
   public void testAxesIdentity4x4()
   {
-    final MatrixM4x4D.ContextMM4D c =
-      new MatrixM4x4D.ContextMM4D();
-
-    final AlmostEqualDouble.ContextRelative cr =
-      new AlmostEqualDouble.ContextRelative();
+    final ContextRelative cr =
+      new ContextRelative();
     cr.setMaxRelativeDifference(0.0000001);
     cr.setMaxAbsoluteDifference(0.0000001);
 
@@ -164,23 +163,29 @@ public final class CAxisSystemConversionsTest
                 target_b.setForward(target_forward);
                 final CAxisSystem target = target_b.build();
 
-                final Matrix4x4DType m_a =
-                  CAxisSystemConversions.createMatrix4x4D(c, source, target);
-                final Matrix4x4DType m_b =
-                  CAxisSystemConversions.createMatrix4x4D(c, target, source);
+                final Matrix4x4D m_a =
+                  CAxisSystemConversions.createMatrix4x4D(source, target);
+                final Matrix4x4D m_b =
+                  CAxisSystemConversions.createMatrix4x4D(target, source);
 
-                final VectorI4D v_src = new VectorI4D(
+                final Vector4D v_src = Vector4D.of(
                   Math.random(), Math.random(), Math.random(), Math.random());
 
-                final VectorM4D v_dst = new VectorM4D();
+                final Vector4D v_dst_pre =
+                  Matrices4x4D.multiplyVectorPost(m_a, v_src);
 
-                MatrixM4x4D.multiplyVector4D(c, m_a, v_src, v_dst);
                 LOG.debug("v_src:        {}", v_src);
-                LOG.debug("v_dst (pre):  {}", v_dst);
-                MatrixM4x4D.multiplyVector4D(c, m_b, v_dst, v_dst);
-                LOG.debug("v_dst (post): {}", v_dst);
+                LOG.debug("v_dst (pre):  {}", v_dst_pre);
 
-                Assert.assertTrue(VectorM4D.almostEqual(cr, v_src, v_dst));
+                final Vector4D v_dst_post =
+                  Matrices4x4D.multiplyVectorPost(m_b, v_dst_pre);
+
+                LOG.debug("v_dst (post): {}", v_dst_post);
+
+                Assert.assertTrue(almostEqual(cr, v_src.x(), v_dst_post.x()));
+                Assert.assertTrue(almostEqual(cr, v_src.y(), v_dst_post.y()));
+                Assert.assertTrue(almostEqual(cr, v_src.z(), v_dst_post.z()));
+                Assert.assertTrue(almostEqual(cr, v_src.w(), v_dst_post.w()));
               }
             }
           }

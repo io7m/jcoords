@@ -7,13 +7,13 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.io7m.jcoords</groupId>
-    <artifactId>io7m-jcoords</artifactId>
+    <artifactId>com.io7m.jcoords</artifactId>
     <version>0.1.3</version>
   </parent>
-  <artifactId>io7m-jcoords-documentation</artifactId>
+  <artifactId>com.io7m.jcoords.documentation</artifactId>
 
   <packaging>jar</packaging>
-  <name>io7m-jcoords-documentation</name>
+  <name>com.io7m.jcoords.documentation</name>
   <description>Coordinate system functions (Documentation)</description>
   <url>http://io7m.github.io/jcoords/</url>
 
@@ -26,13 +26,13 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-jcoords-core</artifactId>
+      <artifactId>com.io7m.jcoords.core</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
       <groupId>com.io7m.jnull</groupId>
-      <artifactId>io7m-jnull-core</artifactId>
+      <artifactId>com.io7m.jnull.core</artifactId>
     </dependency>
   </dependencies>
 

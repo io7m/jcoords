@@ -7,13 +7,13 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.io7m.jcoords</groupId>
-    <artifactId>io7m-jcoords</artifactId>
+    <artifactId>com.io7m.jcoords</artifactId>
     <version>0.1.3</version>
   </parent>
-  <artifactId>io7m-jcoords-core</artifactId>
+  <artifactId>com.io7m.jcoords.core</artifactId>
 
   <packaging>bundle</packaging>
-  <name>io7m-jcoords-core</name>
+  <name>com.io7m.jcoords.core</name>
   <description>Coordinate system functions (Core)</description>
   <url>http://io7m.github.io/jcoords/</url>
 
@@ -26,19 +26,19 @@
   <dependencies>
     <dependency>
       <groupId>com.io7m.jnull</groupId>
-      <artifactId>io7m-jnull-core</artifactId>
+      <artifactId>com.io7m.jnull.core</artifactId>
     </dependency>
     <dependency>
       <groupId>com.io7m.junreachable</groupId>
-      <artifactId>io7m-junreachable-core</artifactId>
+      <artifactId>com.io7m.junreachable.core</artifactId>
     </dependency>
     <dependency>
       <groupId>com.io7m.jtensors</groupId>
-      <artifactId>io7m-jtensors-core</artifactId>
+      <artifactId>com.io7m.jtensors.core</artifactId>
     </dependency>
     <dependency>
       <groupId>com.io7m.jaffirm</groupId>
-      <artifactId>io7m-jaffirm-core</artifactId>
+      <artifactId>com.io7m.jaffirm.core</artifactId>
     </dependency>
 
     <dependency>

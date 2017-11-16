@@ -18,6 +18,5 @@
  * Functions for converting coordinates between spaces.
  */
 
-@com.io7m.jnull.NonNullByDefault
 package com.io7m.jcoords.core.conversion;
 

@@ -16,7 +16,7 @@
 
 package com.io7m.jcoords.core.conversion;
 
-import com.io7m.jnull.NullCheck;
+import java.util.Objects;
 import com.io7m.jtensors.core.unparameterized.vectors.Vector3D;
 
 /**
@@ -72,7 +72,7 @@ public enum CAxis
   {
     this.name = in_name;
     this.positive = in_positive;
-    this.vector = NullCheck.notNull(in_v, "Vector");
+    this.vector = Objects.requireNonNull(in_v, "Vector");
   }
 
   /**

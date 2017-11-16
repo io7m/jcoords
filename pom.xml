@@ -30,6 +30,7 @@
     <io7m.checkstyle.artifact>com.io7m.jcoords.checkstyle</io7m.checkstyle.artifact>
     <io7m.checkstyle.path>/com/io7m/jcoords/checkstyle/checkstyle.xml</io7m.checkstyle.path>
     <io7m.api.previousVersion>0.2.0</io7m.api.previousVersion>
+    <io7m.org.immutables.version>2.6.0-alpha1</io7m.org.immutables.version>
   </properties>
 
   <licenses>
@@ -117,7 +118,7 @@
       <dependency>
         <groupId>org.immutables</groupId>
         <artifactId>value</artifactId>
-        <version>2.6.0.alpha0</version>
+        <version>${io7m.org.immutables.version}</version>
       </dependency>
 
       <dependency>

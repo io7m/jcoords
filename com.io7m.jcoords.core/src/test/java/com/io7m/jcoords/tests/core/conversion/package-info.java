@@ -18,6 +18,6 @@
  * Unit tests for the conversion functions.
  */
 
-@com.io7m.jnull.NonNullByDefault
+
 package com.io7m.jcoords.tests.core.conversion;
 

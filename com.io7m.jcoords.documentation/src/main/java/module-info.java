@@ -15,8 +15,14 @@
  */
 
 /**
- * Functions for converting coordinates between spaces.
+ * Coordinate system functions (Documentation)
  */
 
-package com.io7m.jcoords.core.conversion;
+module com.io7m.jcoords.documentation
+{
+  requires static org.immutables.value;
 
+  requires com.io7m.jcoords.core;
+
+  exports com.io7m.jcoords.documentation;
+}

@@ -17,7 +17,7 @@
 package com.io7m.jcoords.core.conversion;
 
 import com.io7m.jequality.AlmostEqualDouble;
-import com.io7m.jnull.NullCheck;
+import java.util.Objects;
 import com.io7m.jtensors.core.unparameterized.vectors.Vector3D;
 import com.io7m.jtensors.core.unparameterized.vectors.Vectors3D;
 
@@ -50,7 +50,7 @@ public enum CAxisSystemHandedness
   public static CAxisSystemHandedness ofSystem(
     final CAxisSystem system)
   {
-    NullCheck.notNull(system, "system");
+    Objects.requireNonNull(system, "system");
 
     /*
      * Calculate the remaining "right" vector.

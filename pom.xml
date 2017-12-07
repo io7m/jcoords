@@ -8,7 +8,7 @@
   <parent>
     <groupId>com.io7m.primogenitor</groupId>
     <artifactId>com.io7m.primogenitor</artifactId>
-    <version>2.0.0-beta0017</version>
+    <version>2.0.0</version>
   </parent>
 
   <groupId>com.io7m.jcoords</groupId>
@@ -86,22 +86,22 @@
       <dependency>
         <groupId>com.io7m.jequality</groupId>
         <artifactId>com.io7m.jequality.core</artifactId>
-        <version>1.0.5</version>
+        <version>2.0.0</version>
       </dependency>
       <dependency>
         <groupId>com.io7m.junreachable</groupId>
         <artifactId>com.io7m.junreachable.core</artifactId>
-        <version>2.0.0-beta0004</version>
+        <version>2.0.0</version>
       </dependency>
       <dependency>
         <groupId>com.io7m.jtensors</groupId>
         <artifactId>com.io7m.jtensors.core</artifactId>
-        <version>8.2.0</version>
+        <version>9.0.0</version>
       </dependency>
       <dependency>
         <groupId>com.io7m.jaffirm</groupId>
         <artifactId>com.io7m.jaffirm.core</artifactId>
-        <version>1.1.0</version>
+        <version>2.0.0</version>
       </dependency>
 
       <dependency>

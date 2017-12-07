@@ -13,7 +13,7 @@
 
   <groupId>com.io7m.jcoords</groupId>
   <artifactId>com.io7m.jcoords</artifactId>
-  <version>0.2.0</version>
+  <version>1.0.0</version>
 
   <packaging>pom</packaging>
   <name>com.io7m.jcoords</name>

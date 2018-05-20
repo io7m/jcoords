@@ -8,12 +8,12 @@
   <parent>
     <groupId>com.io7m.primogenitor</groupId>
     <artifactId>com.io7m.primogenitor</artifactId>
-    <version>2.0.0</version>
+    <version>3.0.0-beta0004</version>
   </parent>
 
   <groupId>com.io7m.jcoords</groupId>
   <artifactId>com.io7m.jcoords</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0-SNAPSHOT</version>
 
   <packaging>pom</packaging>
   <name>com.io7m.jcoords</name>
@@ -21,16 +21,13 @@
   <url>http://github.com/io7m/jcoords</url>
 
   <modules>
-    <module>com.io7m.jcoords.checkstyle</module>
     <module>com.io7m.jcoords.core</module>
     <module>com.io7m.jcoords.documentation</module>
   </modules>
 
   <properties>
-    <io7m.checkstyle.artifact>com.io7m.jcoords.checkstyle</io7m.checkstyle.artifact>
-    <io7m.checkstyle.path>/com/io7m/jcoords/checkstyle/checkstyle.xml</io7m.checkstyle.path>
     <io7m.api.previousVersion>0.2.0</io7m.api.previousVersion>
-    <io7m.org.immutables.version>2.6.0-alpha1</io7m.org.immutables.version>
+    <io7m.org.immutables.version>2.6.0</io7m.org.immutables.version>
   </properties>
 
   <licenses>
@@ -140,6 +137,13 @@
             <source>9</source>
             <target>9</target>
             <release>9</release>
+            <annotationProcessorPaths>
+              <dependency>
+                <groupId>org.immutables</groupId>
+                <artifactId>value</artifactId>
+                <version>${io7m.org.immutables.version}</version>
+              </dependency>
+            </annotationProcessorPaths>
           </configuration>
         </plugin>
 
@@ -148,6 +152,15 @@
           <groupId>com.io7m.kstructural</groupId>
           <artifactId>io7m-kstructural-maven-plugin</artifactId>
           <version>0.3.1</version>
+        </plugin>
+
+        <!-- Spot bugs -->
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <configuration>
+            <excludeFilterFile>spotbugs-filter.xml</excludeFilterFile>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>

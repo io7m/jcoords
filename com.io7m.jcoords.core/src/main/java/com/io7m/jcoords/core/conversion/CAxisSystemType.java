@@ -16,8 +16,8 @@
 
 package com.io7m.jcoords.core.conversion;
 
+import com.io7m.immutables.styles.ImmutablesStyleType;
 import com.io7m.jaffirm.core.Preconditions;
-import com.io7m.jcoords.core.ImmutableStyleType;
 import com.io7m.jtensors.core.unparameterized.matrices.Matrices3x3D;
 import com.io7m.jtensors.core.unparameterized.matrices.Matrices4x4D;
 import com.io7m.jtensors.core.unparameterized.matrices.Matrix3x3D;
@@ -33,7 +33,7 @@ import java.util.function.Function;
  */
 
 @Value.Immutable
-@ImmutableStyleType
+@ImmutablesStyleType
 public interface CAxisSystemType
 {
   /**

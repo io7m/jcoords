@@ -16,32 +16,14 @@
 
 package com.io7m.jcoords.core;
 
-import org.immutables.value.Value;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 /**
- * The {@code immutables.org} style for the project.
+ * A workaround for being unable to export an empty package.
  */
 
-@Target({ElementType.PACKAGE, ElementType.TYPE})
-@Retention(RetentionPolicy.CLASS)
-@Value.Style(
-  get = {"is*", "get*"},
-  init = "set*",
-  typeAbstract = {"Abstract*", "*Type"},
-  typeImmutable = "*",
-  typeModifiable = "*Mutable",
-  builder = "builder",
-  build = "build",
-  allowedClasspathAnnotations = Override.class,
-  visibility = Value.Style.ImplementationVisibility.PUBLIC,
-  defaults = @Value.Immutable(copy = true))
-public @interface ImmutableStyleType
+final class Workaround
 {
+  private Workaround()
+  {
 
+  }
 }
-

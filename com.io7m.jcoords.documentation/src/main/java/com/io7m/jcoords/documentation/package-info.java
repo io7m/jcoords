@@ -18,5 +18,4 @@
  * Documentation.
  */
 
- package com.io7m.jcoords.documentation;
-
+package com.io7m.jcoords.documentation;

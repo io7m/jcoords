@@ -15,7 +15,7 @@
   <packaging>pom</packaging>
   <name>com.io7m.jcoords</name>
   <description>Coordinate system functions</description>
-  <url>http://github.com/io7m/jcoords</url>
+  <url>https://www.io7m.com/software/jcoords</url>
 
   <modules>
     <module>com.io7m.jcoords.core</module>
@@ -30,7 +30,7 @@
   <licenses>
     <license>
       <name>ISC License</name>
-      <url>http://io7m.com/license/isc.txt</url>
+      <url>https://io7m.com/license/isc.txt</url>
     </license>
   </licenses>
 
@@ -45,12 +45,12 @@
       <id>io7m</id>
       <name>io7m</name>
       <email>code@io7m.com</email>
-      <url>http://io7m.com</url>
+      <url>https://io7m.com</url>
     </developer>
   </developers>
 
   <issueManagement>
-    <url>http://github.com/io7m/jcoords/issues</url>
+    <url>https://github.com/io7m/jcoords/issues</url>
     <system>GitHub Issues</system>
   </issueManagement>
 
@@ -96,6 +96,17 @@
         <groupId>com.io7m.jaffirm</groupId>
         <artifactId>com.io7m.jaffirm.core</artifactId>
         <version>4.0.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.annotation.bundle</artifactId>
+        <version>2.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.annotation.versioning</artifactId>
+        <version>1.1.2</version>
       </dependency>
 
       <dependency>
@@ -170,6 +181,12 @@
     </pluginManagement>
 
     <plugins>
+      <!-- Spot bugs -->
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+      </plugin>
+
       <!-- Generate a site -->
       <plugin>
         <groupId>com.io7m.minisite</groupId>

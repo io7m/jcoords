@@ -1,5 +1,5 @@
 /*
- * Copyright © 2016 <code@io7m.com> http://io7m.com
+ * Copyright © 2016 Mark Raynsford <code@io7m.com> https://www.io7m.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -16,8 +16,8 @@
 
 package com.io7m.jcoords.core.conversion;
 
+import com.io7m.immutables.styles.ImmutablesStyleType;
 import com.io7m.jaffirm.core.Preconditions;
-import com.io7m.jcoords.core.ImmutableStyleType;
 import com.io7m.jtensors.core.unparameterized.matrices.Matrices3x3D;
 import com.io7m.jtensors.core.unparameterized.matrices.Matrices4x4D;
 import com.io7m.jtensors.core.unparameterized.matrices.Matrix3x3D;
@@ -33,7 +33,7 @@ import java.util.function.Function;
  */
 
 @Value.Immutable
-@ImmutableStyleType
+@ImmutablesStyleType
 public interface CAxisSystemType
 {
   /**

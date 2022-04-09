@@ -1,5 +1,5 @@
 /*
- * Copyright © 2015 <code@io7m.com> http://io7m.com
+ * Copyright © 2016 Mark Raynsford <code@io7m.com> https://www.io7m.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,17 +14,16 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.io7m.jcoords.checkstyle;
+package com.io7m.jcoords.core;
 
 /**
- * Marker class for looking up files by resource.
+ * A workaround for being unable to export an empty package.
  */
 
-public final class Checkstyle
+final class Workaround
 {
-  private Checkstyle()
+  private Workaround()
   {
-    throw new AssertionError("Unreachable code");
+
   }
 }
-
